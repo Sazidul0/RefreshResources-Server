@@ -50,11 +50,18 @@ async function run() {
             res.send(result);
         })
 
-    }
+        // Delete one Item From Manage Item
+        app.delete('/items/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await itmeCollection.deleteOne(query);
+            res.send(result);
+
+        }
     finally {
 
+        }
     }
-}
 
 run().catch(console.dir);
 
@@ -62,10 +69,10 @@ run().catch(console.dir);
 
 
 
-app.get('/', (req, res) => {
-    res.send('Refresh Resourses');
-});
+    app.get('/', (req, res) => {
+        res.send('Refresh Resourses');
+    });
 
-app.listen(port, () => {
-    console.log('Listening to port', port);
-});
+    app.listen(port, () => {
+        console.log('Listening to port', port);
+    });
