@@ -58,6 +58,24 @@ async function run() {
             res.send(result);
 
         }
+
+         // Get all Items With a Particular Email
+         app.get('/allitem', verifyJWToken, async (req, res) => {
+            const email = req.query.email;
+            const decodedEmail = req.decoded.email;
+            console.log(decodedEmail)
+            if (email === decodedEmail) {
+                const query = { email: email };
+                const cursor = itmeCollection.find(query);
+                const items = await cursor.toArray();
+                res.send(items)
+            }
+            else {
+                return res.status(403).send({ message: 'Forbidden Access' })
+            }
+        })
+
+
     finally {
 
         }
