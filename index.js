@@ -84,7 +84,7 @@ async function run() {
         app.get('/allitem', verifyJWToken, async (req, res) => {
             const email = req.query.email;
             const decodedEmail = req.decoded.email;
-            console.log(decodedEmail)
+            // console.log(decodedEmail)
             if (email === decodedEmail) {
                 const query = { email: email };
                 const cursor = itmeCollection.find(query);
@@ -112,13 +112,7 @@ async function run() {
             res.send(result);
         })
 
-        // Delete one Item From My Item
-        // app.delete('/items/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id) };
-        //     const result = await itmeCollection.deleteOne(query);
-        //     res.send(result);
-        // })
+
     }
     finally {
 
