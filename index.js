@@ -76,6 +76,21 @@ async function run() {
         })
 
 
+        // Update Quantity
+        app.put('/items/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedUser = req.body;
+            const filter = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updatedDoc = {
+                $set: {
+                    quantiy: updatedUser.quantiy
+                }
+            };
+            const result = await itmeCollection.updateOne(filter, updatedDoc, options);
+            res.send(result);
+        })
+
     finally {
 
         }
